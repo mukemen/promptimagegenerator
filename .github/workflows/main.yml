@@ -1,1 +1,16 @@
+name: Deploy to Railway
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Uvicorn
+        run: uvicorn app.main:app --host 0.0.0.0 --port 8000
