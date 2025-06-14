@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -80,7 +79,17 @@
     }
   </style>
 </head>
-<body>
+<body onload="checkPassword()">
+<script>
+function checkPassword() {
+  var password = prompt("🔐 Masukkan password untuk mengakses tools ini:");
+  if (password !== "tanyapakfajar") {
+    alert("❌ Password salah! Silakan beli akses resmi via Lynk.id.");
+    window.location.href = "https://lynk.id/mukemen";
+  }
+}
+</script>
+
   <div class="container">
     <h2>🎨 Prompt Generator AI</h2>
 
@@ -156,22 +165,14 @@ function generatePrompt() {
   const colors = document.getElementById('colors').value;
   const styles = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(cb => cb.value);
 
-  let prompt = `Subjek: ${subject}
-`;
-  if (lighting) prompt += `Pencahayaan: ${lighting}
-`;
-  if (framing) prompt += `Framing: ${framing}
-`;
-  if (angle) prompt += `Angle: ${angle}
-`;
-  if (mood) prompt += `Mood/Style: ${mood}
-`;
-  if (background) prompt += `Latar Belakang: ${background}
-`;
-  if (colors) prompt += `Warna Dominan: ${colors}
-`;
-  if (styles.length > 0) prompt += `Style Ilustrasi: ${styles.join(', ')}
-`;
+  let prompt = `Subjek: ${subject}\n`;
+  if (lighting) prompt += `Pencahayaan: ${lighting}\n`;
+  if (framing) prompt += `Framing: ${framing}\n`;
+  if (angle) prompt += `Angle: ${angle}\n`;
+  if (mood) prompt += `Mood/Style: ${mood}\n`;
+  if (background) prompt += `Latar Belakang: ${background}\n`;
+  if (colors) prompt += `Warna Dominan: ${colors}\n`;
+  if (styles.length > 0) prompt += `Style Ilustrasi: ${styles.join(', ')}\n`;
 
   document.getElementById('output').innerText = prompt;
   saveHistory(prompt);
